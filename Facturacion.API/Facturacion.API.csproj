@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Facturacion.BLL\Facturacion.BLL.csproj" />
+    <ProjectReference Include="..\Facturacion.DTO\Facturacion.DTO.csproj" />
+    <ProjectReference Include="..\Facturacion.IOC\Facturacion.IOC.csproj" />
+  </ItemGroup>
+
+</Project>

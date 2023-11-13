@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Facturacion.BLL\Facturacion.BLL.csproj" />
+    <ProjectReference Include="..\Facturacion.DAL\Facturacion.DAL.csproj" />
+    <ProjectReference Include="..\Facturacion.Utility\Facturacion.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
