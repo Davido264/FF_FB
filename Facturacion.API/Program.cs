@@ -1,4 +1,5 @@
 using Facturacion.IOC;
+using Facturacion.API.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,5 +35,7 @@ app.UseCors("NuevaPolitica");
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();

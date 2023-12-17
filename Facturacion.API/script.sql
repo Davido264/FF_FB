@@ -70,8 +70,18 @@ fechaRegistro datetime default getdate()
 )
 go
 
+create table Cliente(
+cedulaCliente varchar(10) primary key,
+nombreCompleto varchar(500),
+correo varchar(40),
+direccion varchar(100)
+);
+go
+
+
 create table Venta(
 idVenta int primary key identity(1,1),
+cedulaCliente varchar(10) references Cliente(cedulaCliente),
 numeroDocumento varchar(40),
 tipoPago varchar(50),
 total decimal(10,2),
@@ -175,15 +185,6 @@ go
 insert into numerodocumento(ultimo_Numero,fechaRegistro) values
 (0,getdate())
 go
-
-create table Cliente(
-cedulaCliente varchar(10) primary key,
-nombreCompleto varchar(500),
-correo varchar(40),
-direccion varchar(100)
-);
-go
-
 
 insert into Cliente values
 ('0123456789', 'Pablito Porasocas', 'ppap@tuntun.com', 'Salinas,Ambato');

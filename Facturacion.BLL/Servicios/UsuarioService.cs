@@ -32,6 +32,21 @@ namespace Facturacion.BLL.Servicios
             }
         }
 
+        public async Task<UsuarioDTO?> ObtenerPorId(int id)
+        {
+            try
+            {
+                var queryUsuario = await _usuarioRepositorio.Consultar(u => u.IdUsuario == id);
+                var usuario = await queryUsuario.FirstOrDefaultAsync();
+                return usuario is not null ? _mapper.Map<UsuarioDTO>(usuario) : null;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
         public async Task<SesionDTO> ValidarCredenciales(string correo, string clave)
         {
             try

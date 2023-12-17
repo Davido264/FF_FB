@@ -15,5 +15,7 @@ namespace Facturacion.DTO
         public string? Correo { get; set; }
 
         public string? RolDescription { get; set; }
+
+        public string? Token { get; set; }
     }
 }

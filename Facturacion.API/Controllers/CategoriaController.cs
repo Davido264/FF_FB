@@ -4,6 +4,7 @@ using Facturacion.BLL.Servicios.Contratro;
 using Facturacion.DTO;
 using Facturacion.API.Utilidad;
 using Facturacion.BLL.Servicios;
+using Facturacion.API.Authorization;
 
 namespace Facturacion.API.Controllers
 {
@@ -17,8 +18,10 @@ namespace Facturacion.API.Controllers
         {
             _categoriaServicio = categoriaServicio;
         }
+
         [HttpGet]
         [Route("Lista")]
+        [AllowAnonymous]
         public async Task<IActionResult> Lista()
         {
             var rsp = new Response<List<CategoriaDTO>>();

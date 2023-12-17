@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Facturacion.BLL.Servicios.Contratro;
 using Facturacion.DTO;
 using Facturacion.API.Utilidad;
+using Facturacion.API.Authorization;
 
 namespace Facturacion.API.Controllers
 {
@@ -20,6 +21,7 @@ namespace Facturacion.API.Controllers
 
         [HttpGet]
         [Route("Lista")]
+        [AllowAnonymous]
         public async Task<IActionResult> Lista()
         {
             var rsp = new Response<List<ProductoDTO>>();

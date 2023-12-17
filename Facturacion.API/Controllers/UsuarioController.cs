@@ -4,6 +4,7 @@ using Facturacion.BLL.Servicios.Contratro;
 using Facturacion.DTO;
 using Facturacion.API.Utilidad;
 using Facturacion.BLL.Servicios;
+using Facturacion.API.Authorization;
 
 namespace Facturacion.API.Controllers
 {
@@ -44,7 +45,7 @@ namespace Facturacion.API.Controllers
 
         [HttpPost]
         [Route("IniciarSesion")]
-
+        [AllowAnonymous]
         public async Task<ActionResult> IniciarSesion([FromBody] LoginDTO login)
         {
             var rsp= new Response<SesionDTO>();
@@ -53,6 +54,7 @@ namespace Facturacion.API.Controllers
             {
                 rsp.status = true;
                 rsp.value = await _usuarioServicio.ValidarCredenciales(login.Correo,login.Clave);
+                rsp.value.Token = new JwtUtils().GenerateJwtToken(rsp.value);
             }
             catch (Exception)
             {
@@ -64,7 +66,6 @@ namespace Facturacion.API.Controllers
 
         [HttpPost]
         [Route("Guardar")]
-
         public async Task<ActionResult> Guardar([FromBody] UsuarioDTO usuario)
         {
             var rsp = new Response<UsuarioDTO>();
@@ -84,7 +85,6 @@ namespace Facturacion.API.Controllers
 
         [HttpPut]
         [Route("Editar")]
-
         public async Task<ActionResult> Editar([FromBody] UsuarioDTO usuario)
         {
             var rsp = new Response<bool>();
@@ -105,7 +105,6 @@ namespace Facturacion.API.Controllers
 
         [HttpDelete]
         [Route("Eliminar/{id:int}")]
-
         public async Task<ActionResult> Eliminar(int id) 
         {
             var rsp = new Response<bool>();
@@ -122,14 +121,6 @@ namespace Facturacion.API.Controllers
             }
             return Ok(rsp);
         }
-
-
-
-
-
-
-
-
 
     }
 }
