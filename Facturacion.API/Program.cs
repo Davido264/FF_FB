@@ -21,6 +21,8 @@ builder.Services.AddCors(Options =>
     });
 });
 
+builder.Services.AddScoped<IJwtUtils,JwtUtils>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
