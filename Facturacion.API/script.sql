@@ -59,6 +59,7 @@ stock int,
 precio decimal(10,2),
 esActivo bit default 1,
 fechaRegistro datetime default getdate()
+UrlImagen nvarchar(-1) not null,
 )
 
 go

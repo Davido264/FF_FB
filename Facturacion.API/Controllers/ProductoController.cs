@@ -105,5 +105,12 @@ namespace Facturacion.API.Controllers
             return Ok(rsp);
         }
 
+        [HttpGet]
+        [Route("PermisoS3")]
+        [AllowAnonymous]
+        public async Task<IActionResult> PermisoS3()
+        {
+            return Ok();
+        }
     }
 }
