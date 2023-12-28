@@ -1,8 +1,8 @@
-create database DBVENTA
-go
-
-use DBVENTA
-go
+-- create database DBVENTA
+-- go
+-- 
+-- use DBVENTA
+-- go
 
 create table Rol(
 idRol int primary key identity(1,1),
@@ -58,8 +58,8 @@ idCategoria int references Categoria(idCategoria),
 stock int,
 precio decimal(10,2),
 esActivo bit default 1,
-fechaRegistro datetime default getdate()
-UrlImagen nvarchar(-1) not null,
+fechaRegistro datetime default getdate(),
+UrlImagen nvarchar(max) not null,
 )
 
 go
@@ -123,26 +123,28 @@ INSERT INTO Categoria(nombre,esActivo) values
 ('Teclados',1),
 ('Auriculares',1),
 ('Memorias',1),
-('Accesorios',1)
+('Accesorios',1),
+('Otros',1);
 
 go
 
-insert into Producto(nombre,idCategoria,stock,precio,esActivo) values
-('laptop samsung book pro',1,20,2500,1),
-('laptop lenovo idea pad',1,30,2200,1),
-('laptop asus zenbook duo',1,30,2100,1),
-('monitor teros gaming te-2',2,25,1050,1),
-('monitor samsung curvo',2,15,1400,1),
-('monitor huawei gamer',2,10,1350,1),
-('teclado seisen gamer',3,10,800,1),
-('teclado antryx gamer',3,10,1000,1),
-('teclado logitech',3,10,1000,1),
-('auricular logitech gamer',4,15,800,1),
-('auricular hyperx gamer',4,20,680,1),
-('auricular redragon rgb',4,25,950,1),
-('memoria kingston rgb',5,10,200,1),
-('ventilador cooler master',6,20,200,1),
-('mini ventilador lenono',6,15,200,1)
+
+insert into Producto(nombre,idCategoria,stock,precio,esActivo, urlImagen) values
+('laptop samsung book pro',1,20,2500,1, ''),
+('laptop lenovo idea pad',1,30,2200,1, ''),
+('laptop asus zenbook duo',1,30,2100,1, ''),
+('monitor teros gaming te-2',2,25,1050,1, ''),
+('monitor samsung curvo',2,15,1400,1, ''),
+('monitor huawei gamer',2,10,1350,1, ''),
+('teclado seisen gamer',3,10,800,1, ''),
+('teclado antryx gamer',3,10,1000,1, ''),
+('teclado logitech',3,10,1000,1, ''),
+('auricular logitech gamer',4,15,800,1, ''),
+('auricular hyperx gamer',4,20,680,1, ''),
+('auricular redragon rgb',4,25,950,1, ''),
+('memoria kingston rgb',5,10,200,1, ''),
+('ventilador cooler master',6,20,200,1, ''),
+('mini ventilador lenono',6,15,200,1, '')
 
 go
 

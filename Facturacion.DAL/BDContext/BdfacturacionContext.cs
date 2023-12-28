@@ -36,9 +36,7 @@ public partial class BdfacturacionContext : DbContext
 
     public virtual DbSet<Venta> Venta { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
-        optionsBuilder.UseSqlServer("Server=127.0.0.1,1433; User=sa; Password=Sql@root123; DataBase=DBVENTA; TrustServerCertificate=True;");
-    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
