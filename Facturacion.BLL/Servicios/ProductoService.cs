@@ -45,10 +45,12 @@ namespace Facturacion.BLL.Servicios
             {
                 var productoCreado = await _productoRepositorio.Crear(_mapper.Map<Producto>(modelo));
 
-                if (productoCreado.IdProducto == 0) 
-                 throw new TaskCanceledException("No se pudo crear el producto");
-                return _mapper.Map<ProductoDTO>(productoCreado);    
-                
+                if (productoCreado.IdProducto == 0)
+                {
+                    throw new TaskCanceledException("No se pudo crear el producto");
+                }
+                return _mapper.Map<ProductoDTO>(productoCreado);
+
             }
             catch
             {
@@ -72,6 +74,7 @@ namespace Facturacion.BLL.Servicios
                 productoEncontrado.Stock = productoModelo.Stock;
                 productoEncontrado.Precio = productoModelo.Precio;
                 productoEncontrado.EsActivo = productoModelo.EsActivo;
+                productoEncontrado.UrlImagen = productoModelo.UrlImagen;
 
                 bool respuesta = await _productoRepositorio.Editar(productoEncontrado);
 

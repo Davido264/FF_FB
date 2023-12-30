@@ -5,6 +5,10 @@ using Facturacion.BLL.Servicios.Contratro;
 using Facturacion.DTO;
 using Facturacion.API.Utilidad;
 using Facturacion.API.Authorization;
+using Amazon.S3;
+using Amazon.S3.Model;
+using Amazon.Runtime;
+using Amazon;
 
 namespace Facturacion.API.Controllers
 {
@@ -13,10 +17,14 @@ namespace Facturacion.API.Controllers
     public class ProductoController : ControllerBase
     {
         private readonly IProductoService _productoServicio;
+        private readonly RegionEndpoint _region;
+        private readonly IConfiguration _config;
 
-        public ProductoController(IProductoService productoServicio)
+        public ProductoController(IProductoService productoServicio, IConfiguration config)
         {
             _productoServicio = productoServicio;
+            _region = RegionEndpoint.USEast2;
+            _config = config;
         }
 
         [HttpGet]
@@ -110,7 +118,21 @@ namespace Facturacion.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> PermisoS3()
         {
-            return Ok();
+            var rsp = new Response<string>();
+            var s3 = new AmazonS3Client(_config.GetValue<string>("AwsAccessKey"),_config.GetValue<string>("AwsSecretKey"),_region);
+            var imageId = Guid.NewGuid().ToString();
+            var request = new GetPreSignedUrlRequest
+            {
+                BucketName = "proyecto-mobiles",
+                Key = imageId,
+                Expires = DateTime.UtcNow.AddMinutes(2),
+                Verb = HttpVerb.PUT
+            };
+            var url = s3.GetPreSignedURL(request);
+
+            rsp.status = true;
+            rsp.value = url;
+            return await Task.FromResult(Ok(rsp));
         }
     }
 }

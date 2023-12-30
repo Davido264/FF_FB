@@ -22,6 +22,6 @@ namespace Facturacion.DTO
 
         public int? EsActivo { get; set; }
 
-        public string? UrlImage { get; set; }
+        public string? UrlImagen { get; set; }
     }
 }
